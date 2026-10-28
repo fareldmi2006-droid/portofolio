@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "studio": "remotion studio src/remotion/index.ts"
+    "studio": "remotion studio src/remotion/index.ts",
+    "deploy": "npm run build && node scripts/deploy-pages.mjs"
   },
   "dependencies": {
     "@remotion/player": "4.0.300",

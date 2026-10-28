@@ -47,7 +47,7 @@ npm run build      # production build in dist/
 
 ## Update the content
 
-Edit `src/content.ts` (text, projects, certificates) or swap the photo in `src/assets/`, then rebuild and publish the `dist/` folder to the `gh-pages` branch (GitHub Pages).
+Edit `src/content.ts` (text, projects, certificates) or swap the photo in `src/assets/`, then run `npm run deploy`. It builds the site and publishes it to the `gh-pages` branch, and GitHub Pages updates in about a minute.
 
 ## Contact
 

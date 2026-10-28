@@ -7,7 +7,7 @@ import { Marquee, useNameIntro } from './Kinetic';
 import { MotionBlurDefs } from './motionBlur';
 import { CursorHint } from './CursorHint';
 import { COPY, CONTACT, type Lang } from './content';
-import photo from './assets/farrell-new.jpg'; // previous photo kept as ./assets/farrell.jpg
+import photo from './assets/farrell-portrait.jpg';
 import ccnaImg from './assets/ccna-itn.webp';
 
 const CCNA_PDF = 'certificates/ccna-introduction-to-networks.pdf';
