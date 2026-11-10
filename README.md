@@ -2,7 +2,7 @@
 
 Personal portfolio of **Farrell Fathurrahman**, Informatics Engineering student at Politeknik Caltex Riau (Software Engineering track). Open to on-site internships in Jakarta, Singapore and Malaysia.
 
-**Live site:** https://fareldmi2006-droid.github.io/portofolio/
+**Live site:** https://farrell-fathurrahman.vercel.app (mirror: https://fareldmi2006-droid.github.io/portofolio/)
 
 ![Built with React](https://img.shields.io/badge/React-18-20232a?logo=react) ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-5-646cff?logo=vite&logoColor=white) ![Remotion](https://img.shields.io/badge/Remotion-4-0b84f3)
 
@@ -47,7 +47,7 @@ npm run build      # production build in dist/
 
 ## Update the content
 
-Edit `src/content.ts` (text, projects, certificates) or swap the photo in `src/assets/`, then run `npm run deploy`. It builds the site and publishes it to the `gh-pages` branch, and GitHub Pages updates in about a minute.
+Edit `src/content.ts` (text, projects, certificates) or swap the photo in `src/assets/`, then commit and push to `main`. Vercel builds and publishes the site automatically in under a minute. To refresh the GitHub Pages mirror as well, run `npm run deploy`.
 
 ## Contact
 
