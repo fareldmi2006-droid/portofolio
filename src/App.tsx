@@ -6,11 +6,36 @@ import { RevealText, RotatingBadge, SectionRail, WordCycle } from './Motion';
 import { Marquee, useNameIntro } from './Kinetic';
 import { MotionBlurDefs } from './motionBlur';
 import { CursorHint } from './CursorHint';
-import { COPY, CONTACT, type Lang } from './content';
+import { COPY, CONTACT, type CertImage, type Lang } from './content';
 import photo from './assets/farrell-portrait.jpg';
 import ccnaImg from './assets/ccna-itn.webp';
+import huaweiAiImg from './assets/huawei-overview-of-ai.webp';
+import dtsAiImg from './assets/huawei-ai-for-everyone.webp';
 
-const CCNA_PDF = 'certificates/ccna-introduction-to-networks.pdf';
+// Certificate scans: preview image, original PDF, size, and a description for screen readers.
+const CERT_FILES: Record<CertImage, { img: string; pdf: string; w: number; h: number; alt: string }> = {
+  ccna: {
+    img: ccnaImg,
+    pdf: 'certificates/ccna-introduction-to-networks.pdf',
+    w: 1280,
+    h: 867,
+    alt: 'Cisco Networking Academy certificate: Farrell Fathurrahman completed CCNA: Introduction to Networks, offered by Politeknik Caltex Riau, 17 Nov 2025',
+  },
+  'huawei-ai': {
+    img: huaweiAiImg,
+    pdf: 'certificates/huawei-overview-of-ai.pdf',
+    w: 989,
+    h: 1280,
+    alt: 'Huawei ICT Academy certificate of completion: Farrell Fathurrahman completed the study and exam for Overview of AI (Indonesian), issued 10 Nov 2026',
+  },
+  'dts-ai': {
+    img: dtsAiImg,
+    pdf: 'certificates/huawei-ai-for-everyone.pdf',
+    w: 1280,
+    h: 905,
+    alt: 'Digital Talent Scholarship 2026 training certificate from Komdigi: Farrell Fathurrahman completed Huawei AI for Everyone, Digital Talent Academy, issued 9 Nov 2026',
+  },
+};
 
 type Theme = 'dark' | 'light';
 function initialTheme(): Theme {
@@ -52,14 +77,14 @@ export const App: React.FC = () => {
   const emailRef = useRef<HTMLSpanElement>(null);
   const t = COPY[lang];
   const name = useNameIntro();
-  const [certOpen, setCertOpen] = useState(false);
+  const [certOpen, setCertOpen] = useState<{ key: CertImage; name: string } | null>(null);
   const closeBtn = useRef<HTMLButtonElement>(null);
   const certTrigger = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!certOpen) return;
     closeBtn.current?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setCertOpen(false);
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setCertOpen(null);
     window.addEventListener('keydown', onKey);
     return () => {
       window.removeEventListener('keydown', onKey);
@@ -259,31 +284,34 @@ export const App: React.FC = () => {
                     <h3>{c.name}</h3>
                     <p className="cert-issuer">{c.issuer}</p>
                   </div>
-                  {c.image === 'ccna' && (
+                  {c.image && (
                     <button
                       type="button"
-                      className="cert-thumb"
+                      className={`cert-thumb${CERT_FILES[c.image].h > CERT_FILES[c.image].w ? ' is-portrait' : ''}`}
                       aria-label={`${t.certs.view}: ${c.name}`}
                       data-cursor={t.cursor.cert}
                       onClick={(e) => {
                         certTrigger.current = e.currentTarget;
-                        setCertOpen(true);
+                        setCertOpen({ key: c.image!, name: c.name });
                       }}
                     >
-                      <img src={ccnaImg} alt="" width={1280} height={867} loading="lazy" />
+                      <img src={CERT_FILES[c.image].img} alt="" width={CERT_FILES[c.image].w} height={CERT_FILES[c.image].h} loading="lazy" />
                     </button>
                   )}
                   <p>{c.desc}</p>
+                  {c.credential && (
+                    <p className="cert-id"><span>{t.certs.idLabel}</span> {c.credential}</p>
+                  )}
                   <div className="cert-foot">
                     <span className={`level ${c.pending ? 'level-grow' : 'level-strong'}`}><i />{c.status}</span>
-                    {c.image === 'ccna' && (
+                    {c.image && (
                       <button
                         type="button"
                         className="btn btn-line btn-sm"
                         data-cursor={t.cursor.cert}
                         onClick={(e) => {
                           certTrigger.current = e.currentTarget;
-                          setCertOpen(true);
+                          setCertOpen({ key: c.image!, name: c.name });
                         }}
                       >
                         <Expand size={14} aria-hidden="true" />{t.certs.view}
@@ -347,20 +375,26 @@ export const App: React.FC = () => {
       </footer>
 
       {certOpen && (
-        <div className="viewer" role="dialog" aria-modal="true" aria-label="CCNA: Introduction to Networks" onClick={(e) => e.target === e.currentTarget && setCertOpen(false)}>
+        <div className="viewer" role="dialog" aria-modal="true" aria-label={certOpen.name} onClick={(e) => e.target === e.currentTarget && setCertOpen(null)}>
           <div className="viewer-card card">
             <div className="viewer-bar">
-              <strong>CCNA: Introduction to Networks</strong>
+              <strong>{certOpen.name}</strong>
               <div className="viewer-actions">
-                <a className="btn btn-line btn-sm" href={CCNA_PDF} target="_blank" rel="noopener" data-cursor={t.cursor.cert}>
+                <a className="btn btn-line btn-sm" href={CERT_FILES[certOpen.key].pdf} target="_blank" rel="noopener" data-cursor={t.cursor.cert}>
                   <FileText size={14} aria-hidden="true" />PDF
                 </a>
-                <button type="button" ref={closeBtn} className="btn btn-primary btn-sm" onClick={() => setCertOpen(false)} data-cursor={t.cursor.close}>
+                <button type="button" ref={closeBtn} className="btn btn-primary btn-sm" onClick={() => setCertOpen(null)} data-cursor={t.cursor.close}>
                   <X size={14} aria-hidden="true" />{t.certs.close}
                 </button>
               </div>
             </div>
-            <img src={ccnaImg} alt="Cisco Networking Academy certificate: Farrell Fathurrahman completed CCNA: Introduction to Networks, offered by Politeknik Caltex Riau, 17 Nov 2025" width={1280} height={867} />
+            <img
+              className="viewer-img"
+              src={CERT_FILES[certOpen.key].img}
+              alt={CERT_FILES[certOpen.key].alt}
+              width={CERT_FILES[certOpen.key].w}
+              height={CERT_FILES[certOpen.key].h}
+            />
           </div>
         </div>
       )}

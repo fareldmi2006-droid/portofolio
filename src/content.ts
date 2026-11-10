@@ -1,6 +1,7 @@
 // All copy lives here, in English and Indonesian. Only verified facts — no invented results.
 
 export type Lang = 'en' | 'id';
+export type CertImage = 'ccna' | 'huawei-ai' | 'dts-ai';
 
 export const CONTACT = {
   email: 'fareldmi2006@gmail.com',
@@ -32,7 +33,7 @@ export type Copy = {
   cursor: { top: string; go: string; toEn: string; toId: string; work: string; copy: string; linkedin: string; github: string; turn: string; back: string; cert: string; close: string; rail: string; toLight: string; toDark: string };
   skills: { label: string; title: string; intro: string; groups: Skill[] };
   work: { label: string; title: string; projects: Project[]; illustrative: string; visual: { ftth: string; roles: string; vars: string; mine: string; map: string } };
-  certs: { label: string; title: string; view: string; close: string; items: { seal: string; name: string; issuer: string; desc: string; status: string; date?: string; pending?: boolean; image?: 'ccna' }[] };
+  certs: { label: string; title: string; view: string; close: string; idLabel: string; items: { seal: string; name: string; issuer: string; desc: string; status: string; date?: string; credential?: string; pending?: boolean; image?: CertImage }[] };
   beyond: { label: string; title: string; items: { label: string; title: string; desc: string }[] };
   contact: { label: string; title1: string; title2: string; body: string; email: string; copy: string; open: string };
   footer: string;
@@ -56,7 +57,7 @@ const en: Copy = {
   meta: [
     { label: 'Based in', value: 'Pekanbaru, Indonesia' },
     { label: 'Studying', value: 'Semester 5, Informatics' },
-    { label: 'Certified', value: 'MTCNA · CCNA ITN' },
+    { label: 'Certified', value: 'MTCNA · CCNA · Huawei AI' },
   ],
   profile: {
     label: 'Profile',
@@ -88,7 +89,7 @@ const en: Copy = {
         points: [
           'Descriptive statistics on a real e-commerce dataset',
           'Web maps with OpenLayers and GeoJSON layers',
-          'Machine learning foundations, still growing',
+          'Huawei certificates: Overview of AI and AI for Everyone',
           'Preparing for AWS Certified AI Practitioner',
         ],
       },
@@ -115,7 +116,7 @@ const en: Copy = {
       { name: 'Software & Web', level: 'Main focus', tone: 'main', key: ['React', 'PHP'], items: ['React', 'JavaScript', 'PHP', 'MVC architecture', 'PDO', 'SQL', 'HTML & CSS'] },
       { name: 'Networks & Systems', level: 'Strong · certified', tone: 'strong', key: ['MikroTik RouterOS', 'Ubuntu / Linux'], items: ['MikroTik RouterOS', 'Cisco networking', 'Ubuntu / Linux', 'Network administration', 'FTTH infrastructure'] },
       { name: 'GIS & Mapping', level: 'Practicum', tone: 'grow', key: ['OpenLayers'], items: ['OpenLayers', 'GeoJSON', 'Web mapping'] },
-      { name: 'Data & AI', level: 'Growing', tone: 'grow', key: [], items: ['Descriptive statistics', 'Data auditing', 'Machine learning'] },
+      { name: 'Data & AI', level: 'Growing', tone: 'grow', key: [], items: ['AI fundamentals', 'Descriptive statistics', 'Data auditing', 'Machine learning'] },
     ],
   },
   work: {
@@ -176,9 +177,12 @@ const en: Copy = {
     title: 'Verified by the vendors.',
     view: 'View certificate',
     close: 'Close',
+    idLabel: 'ID',
     items: [
       { seal: 'MTCNA', name: 'MikroTik Certified Network Associate', issuer: 'MikroTik', desc: 'Routing, bridging, firewall and network management on MikroTik RouterOS.', status: 'Certified' },
       { seal: 'CCNA', name: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy · Politeknik Caltex Riau', desc: 'Network fundamentals: IP addressing, Ethernet, switching and routing basics, and building small networks.', status: 'Completed', date: '17 Nov 2025', image: 'ccna' },
+      { seal: 'ICT', name: 'Overview of AI', issuer: 'Huawei ICT Academy', desc: 'Completed the course and passed the exam on the fundamentals of artificial intelligence.', status: 'Completed', date: '10 Nov 2026', credential: 'ICT20261110003063', image: 'huawei-ai' },
+      { seal: 'DTS', name: 'Huawei AI for Everyone', issuer: 'Digital Talent Scholarship 2026 · Komdigi × Huawei', desc: 'Training on AI for everyone in the Digital Talent Academy programme, 3 training hours.', status: 'Completed', date: '9 Nov 2026', credential: '21213394840-4132/DTA/BLSDM.Komdigi/2026', image: 'dts-ai' },
       { seal: 'AWS', name: 'AWS Certified AI Practitioner', issuer: 'Amazon Web Services', desc: 'Foundations of AI, machine learning and generative AI on Amazon Web Services.', status: 'In preparation', pending: true },
     ],
   },
@@ -223,7 +227,7 @@ const id: Copy = {
   meta: [
     { label: 'Domisili', value: 'Pekanbaru, Indonesia' },
     { label: 'Studi', value: 'Semester 5, Informatika' },
-    { label: 'Sertifikasi', value: 'MTCNA · CCNA ITN' },
+    { label: 'Sertifikasi', value: 'MTCNA · CCNA · Huawei AI' },
   ],
   profile: {
     label: 'Profil',
@@ -255,7 +259,7 @@ const id: Copy = {
         points: [
           'Statistik deskriptif pada dataset e-commerce nyata',
           'Peta web dengan OpenLayers dan layer GeoJSON',
-          'Dasar machine learning, masih terus berkembang',
+          'Sertifikat Huawei: Overview of AI dan AI for Everyone',
           'Sedang bersiap untuk AWS Certified AI Practitioner',
         ],
       },
@@ -282,7 +286,7 @@ const id: Copy = {
       { name: 'Software & Web', level: 'Fokus utama', tone: 'main', key: ['React', 'PHP'], items: ['React', 'JavaScript', 'PHP', 'Arsitektur MVC', 'PDO', 'SQL', 'HTML & CSS'] },
       { name: 'Jaringan & Sistem', level: 'Kuat · bersertifikat', tone: 'strong', key: ['MikroTik RouterOS', 'Ubuntu / Linux'], items: ['MikroTik RouterOS', 'Jaringan Cisco', 'Ubuntu / Linux', 'Administrasi jaringan', 'Infrastruktur FTTH'] },
       { name: 'GIS & Pemetaan', level: 'Praktikum', tone: 'grow', key: ['OpenLayers'], items: ['OpenLayers', 'GeoJSON', 'Peta web'] },
-      { name: 'Data & AI', level: 'Berkembang', tone: 'grow', key: [], items: ['Statistik deskriptif', 'Audit data', 'Machine learning'] },
+      { name: 'Data & AI', level: 'Berkembang', tone: 'grow', key: [], items: ['Dasar AI', 'Statistik deskriptif', 'Audit data', 'Machine learning'] },
     ],
   },
   work: {
@@ -343,9 +347,12 @@ const id: Copy = {
     title: 'Diverifikasi langsung oleh vendor.',
     view: 'Lihat sertifikat',
     close: 'Tutup',
+    idLabel: 'No.',
     items: [
       { seal: 'MTCNA', name: 'MikroTik Certified Network Associate', issuer: 'MikroTik', desc: 'Routing, bridging, firewall, dan manajemen jaringan di MikroTik RouterOS.', status: 'Bersertifikat' },
       { seal: 'CCNA', name: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy · Politeknik Caltex Riau', desc: 'Dasar jaringan: pengalamatan IP, Ethernet, dasar switching dan routing, serta membangun jaringan kecil.', status: 'Selesai', date: '17 Nov 2025', image: 'ccna' },
+      { seal: 'ICT', name: 'Overview of AI', issuer: 'Huawei ICT Academy', desc: 'Menyelesaikan studi dan lulus ujian tentang dasar-dasar kecerdasan buatan.', status: 'Selesai', date: '10 Nov 2026', credential: 'ICT20261110003063', image: 'huawei-ai' },
+      { seal: 'DTS', name: 'Huawei AI for Everyone', issuer: 'Digital Talent Scholarship 2026 · Komdigi × Huawei', desc: 'Pelatihan AI for Everyone dalam program Digital Talent Academy, 3 jam pelatihan.', status: 'Selesai', date: '9 Nov 2026', credential: '21213394840-4132/DTA/BLSDM.Komdigi/2026', image: 'dts-ai' },
       { seal: 'AWS', name: 'AWS Certified AI Practitioner', issuer: 'Amazon Web Services', desc: 'Dasar AI, machine learning, dan generative AI di Amazon Web Services.', status: 'Sedang dipersiapkan', pending: true },
     ],
   },

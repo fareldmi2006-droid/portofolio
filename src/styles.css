@@ -606,8 +606,11 @@ button { font: inherit; color: inherit; }
 .cert p { color: var(--muted); font-size: 0.9375rem; }
 .cert-foot { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
 .cert-thumb { display: block; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: zoom-in; box-shadow: inset 0 0 0 1px var(--line); background: none; }
-.cert-thumb img { aspect-ratio: 1421 / 963; width: 100%; height: auto; object-fit: cover; opacity: 0.92; transition: opacity 0.3s, transform 0.6s cubic-bezier(0.2, 0.75, 0.2, 1); }
+.cert-thumb img { aspect-ratio: 3 / 2; width: 100%; height: auto; object-fit: cover; object-position: center; opacity: 0.92; transition: opacity 0.3s, transform 0.6s cubic-bezier(0.2, 0.75, 0.2, 1); }
 .cert-thumb:hover img { opacity: 1; transform: scale(1.03); }
+.cert-thumb.is-portrait img { object-position: center 18%; }
+.cert-id { font-family: var(--mono); font-size: 0.75rem; color: var(--faint); overflow-wrap: anywhere; }
+.cert-id span { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 @media (max-width: 960px) { .certs { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
 
 /* certificate viewer */
@@ -623,7 +626,7 @@ button { font: inherit; color: inherit; }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 .viewer-card { width: min(980px, 100%); display: grid; gap: 14px; padding: 16px; border-radius: 20px; animation: rise 0.45s cubic-bezier(0.2, 0.75, 0.2, 1) both; }
 @keyframes rise { from { transform: translateY(24px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
-.viewer-card img { width: 100%; height: auto; border-radius: 10px; }
+.viewer-card .viewer-img { display: block; width: auto; max-width: 100%; height: auto; max-height: min(78vh, 900px); margin: 0 auto; border-radius: 10px; }
 .viewer-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
 .viewer-bar strong { font-size: 1rem; }
 .viewer-actions { display: flex; flex-wrap: wrap; gap: 8px; }
